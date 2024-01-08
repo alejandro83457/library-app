@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  background-color: lightblue;
+
+  display: grid;
+  justify-content: center;
+}
+main {
+  background-color: lightcoral;
+  width: 65vw;
+}
+
+#book-list {
+  background-color: lightgreen;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+#book-list div {
+  background-color: lightsteelblue;
+}
+
+dialog form {
+  display: flex;
+  flex-direction: column;
+}
