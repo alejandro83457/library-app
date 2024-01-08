@@ -65,8 +65,33 @@ const addBook = () => {
   let newBook = new Book(book, author, pages, read);
   myLibrary.push(newBook);
 
+  // create div
   let div = document.createElement("div");
-  div.textContent = newBook.name;
+  div.setAttribute("data-value", newBook.name);
 
+  // create button
+  let button = document.createElement("button");
+  button.textContent = "Delete";
+
+  // button event to delete itself and parent
+  button.addEventListener("click", () => {
+    // delete book from array
+    deleteBook(button.parentElement.getAttribute("data-value"));
+
+    // delete book from DOM
+    button.parentElement.remove();
+    console.log(myLibrary);
+  });
+
+  div.textContent = newBook.name;
+  div.appendChild(button);
   bookDiv.appendChild(div);
+};
+
+const deleteBook = (bookToRemove) => {
+  let bookIndex;
+  for (let i = 0; i < myLibrary.length; i++) {
+    if (myLibrary[i].name == bookToRemove) bookIndex = i;
+  }
+  myLibrary.splice(bookIndex, 1);
 };
