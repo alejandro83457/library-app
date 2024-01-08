@@ -31,9 +31,8 @@ main {
 #add-book-button {
   border: none;
   background-color: #a8a29e;
-  width: 150px;
+  padding: 5px 15px;
   word-wrap: break-word;
-  height: 40px;
   font-size: inherit;
   border-radius: 5px;
   color: white;
@@ -59,8 +58,7 @@ main {
 #book-list > div button {
   border: none;
   background-color: #f87171;
-  width: 150px;
-  height: 40px;
+  padding: 5px 15px;
   font-size: inherit;
   border-radius: 5px;
   color: white;
