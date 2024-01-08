@@ -32,6 +32,7 @@ main {
   border: none;
   background-color: #a8a29e;
   width: 150px;
+  word-wrap: break-word;
   height: 40px;
   font-size: inherit;
   border-radius: 5px;
@@ -94,6 +95,10 @@ dialog form input {
   padding-left: 10px;
 }
 
+dialog form input:focus {
+  outline: none;
+}
+
 dialog form button {
   border: none;
   background-color: #a8a29e;
@@ -103,6 +108,7 @@ dialog form button {
   color: white;
   width: 100%;
 }
+
 dialog form button:hover {
   background-color: #78716c;
 }
