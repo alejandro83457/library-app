@@ -24,9 +24,9 @@ function Book(name, author, pages, read) {
 }
 
 // Toggle function used to toggle read var.
-Book.prototype.toggleRead = function () {
-  this.read = !this.read;
-};
+// Book.prototype.toggleRead = function () {
+//   this.read = !this.read;
+// };
 
 // Event listeners
 addBookButton.addEventListener("click", () => {
@@ -43,6 +43,21 @@ pagesElement.addEventListener("input", (e) => {
 });
 readElement.addEventListener("change", (e) => {
   read = e.target.checked;
+});
+
+// Close dialog if clicking background
+dialog.addEventListener("click", (e) => {
+  if (e.target === dialog) {
+    // reset everything
+    bookElement.value = "";
+    authorElement.value = "";
+    pagesElement.value = "";
+    readElement.checked = false;
+    read = false;
+
+    // close dialog box
+    dialog.close();
+  }
 });
 
 // Closes dialog
@@ -88,7 +103,7 @@ const addBook = () => {
 
   nameDiv.textContent = newBook.name;
   authorDiv.textContent = newBook.author;
-  pagesDiv.textContent = newBook.pages;
+  pagesDiv.textContent = `Pages ${newBook.pages}`;
   readDiv.textContent = "Read ";
 
   // create button
@@ -123,6 +138,7 @@ const deleteBook = (bookToRemove) => {
   myLibrary.splice(bookIndex, 1);
 };
 
+// updates read property after book added to DOM
 const updateRead = (book) => {
   for (let curr of myLibrary) {
     if (curr.name == book) curr.read = !curr.read;

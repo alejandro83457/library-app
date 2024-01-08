@@ -1,27 +1,114 @@
 body {
   margin: 0;
-  background-color: lightblue;
 
   display: grid;
   justify-content: center;
-}
-main {
-  background-color: lightcoral;
-  width: 65vw;
+  gap: 1rem;
+  font-family: "Roboto", sans-serif;
+
+  font-size: 25px;
 }
 
-#book-list {
-  background-color: lightgreen;
+header {
+  font-weight: bold;
+  text-align: center;
+  font-size: 50px;
+  padding: 2rem 0;
+}
+
+main {
+  width: 85vw;
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
 }
 
-#book-list div {
-  background-color: lightsteelblue;
+#add-book-button-div {
+  display: flex;
+  justify-content: center;
+}
+
+#add-book-button {
+  border: none;
+  background-color: #a8a29e;
+  width: 150px;
+  height: 40px;
+  font-size: inherit;
+  border-radius: 5px;
+  color: white;
+}
+#add-book-button:hover {
+  background-color: #78716c;
+}
+
+#book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+#book-list > div {
+  background-color: #f3f4f6;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+#book-list > div button {
+  border: none;
+  background-color: #f87171;
+  width: 150px;
+  height: 40px;
+  font-size: inherit;
+  border-radius: 5px;
+  color: white;
+}
+
+#book-list > div button:hover {
+  background-color: #ef4444;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 dialog form {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+dialog form div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+dialog form input {
+  border: none;
+  height: 40px;
+  font-size: inherit;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+dialog form button {
+  border: none;
+  background-color: #a8a29e;
+  height: 40px;
+  font-size: inherit;
+  border-radius: 5px;
+  color: white;
+  width: 100%;
+}
+dialog form button:hover {
+  background-color: #78716c;
+}
+
+dialog {
+  border: none;
+  border-radius: 5px;
+  background-color: #f3f4f6;
 }

@@ -5,21 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <title>Library</title>
   </head>
   <body>
     <header>My Library</header>
     <main>
-      <button type="button" id="add-book-button">Add book</button>
+      <div id="add-book-button-div">
+        <button type="button" id="add-book-button">Add book</button>
+      </div>
       <dialog>
         <form>
-          <label for="book-name">Book name:</label>
-          <input type="text" name="book-name" id="book-name" />
-          <label for="author-name">Author name:</label>
-          <input type="text" name="author-name" id="author-name" />
-          <label for="pages">Pages:</label>
-          <input type="number" name="pages" id="pages" />
-
+          <input
+            type="text"
+            name="book-name"
+            id="book-name"
+            placeholder="Book title"
+          />
+          <input
+            type="text"
+            name="author-name"
+            id="author-name"
+            placeholder="Author name"
+          />
+          <input type="number" name="pages" id="pages" placeholder="Pages" />
           <div>
             <label for="read">Did you read it?</label>
             <input type="checkbox" name="read" id="read" />
