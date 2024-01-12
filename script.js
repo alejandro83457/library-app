@@ -3,15 +3,24 @@ class Library {
   addBook(book) {
     this.#library.push(book);
   }
-  removeBook(book) {
-    // console.log(`Book to remove: ${book.name}`);
+  removeBook(bookName) {
     let index;
     for (let i = 0; i < this.#library.length; i++) {
-      if (this.#library[i].name == book.name) index = i;
+      if (this.#library[i].name == bookName) index = i;
     }
     this.#library.splice(index, 1);
   }
+  // Based on name of book, linear search and call the book's
+  // toggleRead function
+  updateRead(bookName) {
+    for (let book of this.#library) {
+      if (book.name == bookName) {
+        book.toggleRead();
+      }
+    }
+  }
   showLibrary() {
+    console.log("My books:");
     for (let book of this.#library) {
       console.log(book.book());
     }
@@ -41,6 +50,9 @@ class Book {
   }
   get pages() {
     return this.#pages;
+  }
+  get read() {
+    return this.#read;
   }
   book() {
     return `${this.#name} ${this.#author} ${this.#pages} ${this.#read}`;
@@ -81,14 +93,17 @@ closeDialogButton.addEventListener("click", (e) => {
   e.preventDefault(); // prevents the submission of the form
   dialog.close();
 
+  // Grabs inputs from dialog
   let name = bookElement.value;
   let author = authorElement.value;
   let pages = pagesElement.value;
   let read = readElement.checked;
 
+  // Create book obj and add to library
   let book = new Book(name, author, pages, read);
   library.addBook(book);
   library.showLibrary();
+  addBookDOM(book);
 
   // Clears previous inputs
   bookElement.value = "";
@@ -97,15 +112,53 @@ closeDialogButton.addEventListener("click", (e) => {
   readElement.checked = false;
 });
 
-// let book1 = new Book("name1", "author1", 100, false);
-// let book2 = new Book("name2", "author2", 100, true);
-// let book3 = new Book("name3", "author3", 100, false);
+// Adding book to DOM
+const addBookDOM = (book) => {
+  // create div container
+  let div = document.createElement("div");
+  div.setAttribute("data-value", book.name);
 
-// let library = new Library();
-// library.addBook(book1);
-// library.addBook(book2);
-// library.addBook(book3);
-// library.showLibrary();
+  // create div for book attributes
+  let nameDiv = document.createElement("div");
+  let authorDiv = document.createElement("div");
+  let pagesDiv = document.createElement("div");
+  let readDiv = document.createElement("div");
 
-// library.removeBook(book3);
-// library.showLibrary();
+  // create checkbox for read
+  let readCheck = document.createElement("input");
+  readCheck.setAttribute("type", "checkbox");
+  readCheck.checked = book.read;
+  readCheck.addEventListener("change", (e) => {
+    library.updateRead(
+      readCheck.parentElement.parentElement.getAttribute("data-value")
+    );
+    library.showLibrary();
+  });
+
+  nameDiv.textContent = book.name;
+  authorDiv.textContent = book.author;
+  pagesDiv.textContent = `Pages ${book.pages}`;
+  readDiv.textContent = "Read ";
+
+  // create button
+  let button = document.createElement("button");
+  button.textContent = "Delete";
+
+  // button event to delete itself and parent
+  button.addEventListener("click", () => {
+    // delete book from array
+    library.removeBook(button.parentElement.getAttribute("data-value"));
+
+    // delete book from DOM
+    button.parentElement.remove();
+    library.showLibrary();
+  });
+
+  div.appendChild(nameDiv);
+  div.appendChild(authorDiv);
+  div.appendChild(pagesDiv);
+  readDiv.appendChild(readCheck);
+  div.appendChild(readDiv);
+  div.appendChild(button);
+  bookDiv.appendChild(div);
+};
