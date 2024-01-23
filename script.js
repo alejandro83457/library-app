@@ -62,11 +62,7 @@ class Book {
 // Element objects
 let addBookButton = document.querySelector('#add-book-button');
 let dialog = document.querySelector('dialog');
-
-// DONT DO THIS!!!!!!
-// let closeDialogButton = document.querySelector('dialog button');
 let closeDialogButton = document.querySelector('form');
-
 let bookDiv = document.querySelector('#book-list');
 
 let bookElement = document.querySelector('dialog #book-name');
@@ -77,7 +73,7 @@ let readElement = document.querySelector('dialog #read');
 // Library object
 const library = new Library();
 
-// EVENT LISTENERS
+// EVENT LISTENERS //
 addBookButton.addEventListener('click', () => {
   dialog.showModal();
 });
@@ -94,16 +90,8 @@ dialog.addEventListener('click', (e) => {
 });
 // Closes dialog
 closeDialogButton.addEventListener('submit', (e) => {
-  e.preventDefault(); // prevents the submission of the form
-
-  let bookName = document.querySelector('#book-name');
-  let authorName = document.querySelector('#author-name');
-  let pagesNumber = document.querySelector('#pages');
-  if (!validate(bookName, 'Book title field is empty!')) return;
-  if (!validate(authorName, 'Author name field is empty!')) return;
-  if (!validate(pagesNumber, 'Pages number is not set!')) return;
-
-  dialog.close();
+  // Prevents the submission of the form and the reload of the page
+  e.preventDefault();
 
   // Grabs inputs from dialog
   let name = bookElement.value;
@@ -122,6 +110,8 @@ closeDialogButton.addEventListener('submit', (e) => {
   authorElement.value = '';
   pagesElement.value = '';
   readElement.checked = false;
+
+  dialog.close();
 });
 
 // Adding book to DOM
@@ -173,15 +163,4 @@ const addBookDOM = (book) => {
   div.appendChild(readDiv);
   div.appendChild(button);
   bookDiv.appendChild(div);
-};
-
-// Add validity event listeners.
-const validate = (input, msg) => {
-  if (input.validity.valueMissing) {
-    input.setCustomValidity(msg);
-    return false;
-  } else {
-    input.setCustomValidity('');
-    return true;
-  }
 };
