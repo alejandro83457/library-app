@@ -1,15 +1,15 @@
-let addBookButton = document.querySelector("#add-book-button");
-let dialog = document.querySelector("dialog");
-let closeDialogButton = document.querySelector("dialog button");
-let bookDiv = document.querySelector("#book-list");
+let addBookButton = document.querySelector('#add-book-button');
+let dialog = document.querySelector('dialog');
+let closeDialogButton = document.querySelector('dialog button');
+let bookDiv = document.querySelector('#book-list');
 
-let bookElement = document.querySelector("dialog #book-name");
-let authorElement = document.querySelector("dialog #author-name");
-let pagesElement = document.querySelector("dialog #pages");
-let readElement = document.querySelector("dialog #read");
+let bookElement = document.querySelector('dialog #book-name');
+let authorElement = document.querySelector('dialog #author-name');
+let pagesElement = document.querySelector('dialog #pages');
+let readElement = document.querySelector('dialog #read');
 
-let book = "";
-let author = "";
+let book = '';
+let author = '';
 let pages = 0;
 let read = false;
 
@@ -29,29 +29,29 @@ function Book(name, author, pages, read) {
 // };
 
 // Event listeners
-addBookButton.addEventListener("click", () => {
+addBookButton.addEventListener('click', () => {
   dialog.showModal();
 });
-bookElement.addEventListener("input", (e) => {
+bookElement.addEventListener('input', (e) => {
   book = e.target.value;
 });
-authorElement.addEventListener("input", (e) => {
+authorElement.addEventListener('input', (e) => {
   author = e.target.value;
 });
-pagesElement.addEventListener("input", (e) => {
+pagesElement.addEventListener('input', (e) => {
   pages = e.target.value;
 });
-readElement.addEventListener("change", (e) => {
+readElement.addEventListener('change', (e) => {
   read = e.target.checked;
 });
 
 // Close dialog if clicking background
-dialog.addEventListener("click", (e) => {
+dialog.addEventListener('click', (e) => {
   if (e.target === dialog) {
     // reset everything
-    bookElement.value = "";
-    authorElement.value = "";
-    pagesElement.value = "";
+    bookElement.value = '';
+    authorElement.value = '';
+    pagesElement.value = '';
     readElement.checked = false;
     read = false;
 
@@ -61,7 +61,7 @@ dialog.addEventListener("click", (e) => {
 });
 
 // Closes dialog
-closeDialogButton.addEventListener("click", (e) => {
+closeDialogButton.addEventListener('click', (e) => {
   e.preventDefault(); // prevents the submission of the form
   dialog.close();
 
@@ -69,9 +69,9 @@ closeDialogButton.addEventListener("click", (e) => {
   console.log(myLibrary);
 
   // Clears previous inputs
-  bookElement.value = "";
-  authorElement.value = "";
-  pagesElement.value = "";
+  bookElement.value = '';
+  authorElement.value = '';
+  pagesElement.value = '';
   readElement.checked = false;
   read = false;
 });
@@ -81,22 +81,22 @@ const addBook = () => {
   myLibrary.push(newBook);
 
   // create div container
-  let div = document.createElement("div");
-  div.setAttribute("data-value", newBook.name);
+  let div = document.createElement('div');
+  div.setAttribute('data-value', newBook.name);
 
   // create div for book attributes
-  let nameDiv = document.createElement("div");
-  let authorDiv = document.createElement("div");
-  let pagesDiv = document.createElement("div");
-  let readDiv = document.createElement("div");
+  let nameDiv = document.createElement('div');
+  let authorDiv = document.createElement('div');
+  let pagesDiv = document.createElement('div');
+  let readDiv = document.createElement('div');
 
   // create checkbox for read
-  let readCheck = document.createElement("input");
-  readCheck.setAttribute("type", "checkbox");
+  let readCheck = document.createElement('input');
+  readCheck.setAttribute('type', 'checkbox');
   readCheck.checked = read;
-  readCheck.addEventListener("change", (e) => {
+  readCheck.addEventListener('change', (e) => {
     updateRead(
-      readCheck.parentElement.parentElement.getAttribute("data-value")
+      readCheck.parentElement.parentElement.getAttribute('data-value')
     );
     console.log(myLibrary);
   });
@@ -104,16 +104,16 @@ const addBook = () => {
   nameDiv.textContent = newBook.name;
   authorDiv.textContent = newBook.author;
   pagesDiv.textContent = `Pages ${newBook.pages}`;
-  readDiv.textContent = "Read ";
+  readDiv.textContent = 'Read ';
 
   // create button
-  let button = document.createElement("button");
-  button.textContent = "Delete";
+  let button = document.createElement('button');
+  button.textContent = 'Delete';
 
   // button event to delete itself and parent
-  button.addEventListener("click", () => {
+  button.addEventListener('click', () => {
     // delete book from array
-    deleteBook(button.parentElement.getAttribute("data-value"));
+    deleteBook(button.parentElement.getAttribute('data-value'));
 
     // delete book from DOM
     button.parentElement.remove();
